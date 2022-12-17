@@ -7,9 +7,6 @@ void display();
 void insert_head();
 void insert_last();
 void insert_val();
-void delete_head();
-void delete_last();
-void delete_val();
 
 struct Node
 {
@@ -24,7 +21,7 @@ void main()
     int ch;
     while(1)
     {
-        printf("\n1.Create\n2.Display \n3.Insert Head \n4.Insert Last\n5.Insert val\n6.Delete Head\n7.Delete Last\n8.Delete val\n9.Exit");
+        printf("\n1.Create\n2.Display \n3.Insert Head \n4.Insert Last\n5.Insert val\n6.Exit");
         printf("\nEnter your choice:\n");
         scanf("%d",&ch);
         switch(ch)
@@ -43,15 +40,8 @@ void main()
             break;
         case 5: insert_val();
             break;
-        case 6: delete_head();
+        case 6: exit(1);
             break;
-        case 7:delete_last();
-            break;
-        case 8:delete_val();
-            break;
-        case 9:
-            exit(1);
-
         default:
             printf("Invalid choice\n");
         }
@@ -131,42 +121,11 @@ void insert_val(){
     scanf("%d",&new->data);
     printf("enter value in between where to enter");
     scanf("%d",&val);
-    while(ptr->link !=val){
+    while(ptr->data !=val){
         prevptr = ptr;
         ptr = ptr->link;
     }
     prevptr->link = new;
     new->link = ptr;
-}
-void delete_head(){
-    node *ptr;
-    ptr = start;
-    start=start->link;
-    free(ptr);
-}
-void delete_last(){
-    node *ptr,*prevptr;
-    ptr = start;
-    prevptr = start;
-    while(ptr->link != NULL){
-        prevptr = ptr;
-        ptr = ptr->link;
-    }
-    prevptr->link = NULL;
-    free(ptr);
-}
-void delete_val(){
-    int val;
-    node *ptr,*prevptr;
-    prevptr = start;
-    ptr = start;
-    printf("enter value to be deleted");
-    scanf("%d",&val);
-    while(ptr->data!=val){
-        prevptr = ptr;
-        ptr = ptr->link;
-    }
-    prevptr->link = ptr->link;
-    free(ptr);
 }
 
