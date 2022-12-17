@@ -121,7 +121,7 @@ void insert_val(){
     scanf("%d",&new->data);
     printf("enter value in between where to enter");
     scanf("%d",&val);
-    while(ptr->data !=val){
+    for(int i=1;i<val;i++){
         prevptr = ptr;
         ptr = ptr->link;
     }
