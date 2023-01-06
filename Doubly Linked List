@@ -72,12 +72,11 @@ struct node *display_ll(struct node *start)
     else
     {
         ptr=start;
-        while(ptr->next!=NULL)
+        while(ptr!=NULL)
         {
-            printf("\n%d",ptr->data);
+            printf("%d\t",ptr->data);
             ptr=ptr->next;
         }
-        printf("\n%d",ptr->data);
     }
     return start;
 }
@@ -85,12 +84,16 @@ struct node *display_ll(struct node *start)
 struct node *insert_before(struct node *start)
 {
     struct node *new_node,*ptr;
-    int num;
+    int num,val;
     if(start==NULL)
       printf("\nLINKED LIST IS EMPTY");
     else
     {
         new_node=(struct node *)malloc(sizeof(struct node));
+        printf("\nEnter data into inserted node");
+        scanf("%d",&val);
+        new_node->data=val;
+        ptr=start;
         printf("\nEnter the data value of the node before which you want to insert a node");
         scanf("%d",&num);
         while(ptr->data!=num)
@@ -98,9 +101,7 @@ struct node *insert_before(struct node *start)
         ptr->prev->next=new_node;
         new_node->prev=ptr->prev;
         new_node->next=ptr;
-        printf("\nEnter data into inserted node");
-        scanf("%d",&num);
-        new_node->data=num;
+        ptr->prev=new_node;
     }
     return start;
 }
